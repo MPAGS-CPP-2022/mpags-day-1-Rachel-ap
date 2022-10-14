@@ -8,6 +8,6 @@ How to Install
 Authors
 ====================
 
-A Second Level Header
+Documentation
 ---------------------
 
