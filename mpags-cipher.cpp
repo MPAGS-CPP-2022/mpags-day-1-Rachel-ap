@@ -4,14 +4,53 @@
 int main(int argc, char* argv[])
 {
     const std::vector<std::string> cmdLineArgs { argv, argv+argc};
+    std::string version {"Hello"};
+    std::string inputFile {"Hello"};
+    std::string outputFile {"Hello"};
 
-    for (size_t i{0}; i < cmdLineArgs.size(); i++) {
-        std::cout << cmdLineArgs[i] << std::endl;
-        if(cmdLineArgs[i] == "-h") {
-            std::cout << "Help text" << std::endl; 
+    //first print all the cmdLineArgs out
+    for (size_t i{1}; i < cmdLineArgs.size(); i++) {
+        std::cout << cmdLineArgs[i]  << std::endl;
+        //search for help inputs and print help message if there
+        if (cmdLineArgs[i] == "-h"){ 
+            std::cout << "Help Text" << std::endl; 
+            continue;
         }
+        else if (cmdLineArgs[i] == "--help"){
+            std::cout << "Help Text" << std::endl;
+            continue;
+        }
+
+        //search for version input and print out the version if there
+        else if (cmdLineArgs[i] == "--version"){
+            std::cout << "Version: " << std::endl; 
+            continue;
+        }
+        //search for -o input and print output file name if there
+        else if (cmdLineArgs[i] == "-o"){
+            outputFile = cmdLineArgs[i+1];
+            std::cout <<"File Name: " + outputFile << std::endl;
+            i++;
+            continue;
+        }
+        
+        //search for -i input and print input file name if there
+        else if (cmdLineArgs[i] == "-i"){
+            inputFile = cmdLineArgs[i+1];
+            std::cout << "File Name: " + inputFile << std::endl;
+            i++;
+            continue;
+        }
+
+        //if no arguments above in command line, print message then exit
+        else{
+            std::cout << "Problem parsing command line arguments - exiting program" << std::endl;
+            return(0);
+        }
+         
     
     }
+
     
     char in_char{'x'};
     std::string out_str{""};
